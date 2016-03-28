@@ -1,1 +1,51 @@
+#include <stdio.h>
+#include <string.h>
 
+
+int anagram_mi(char *string1, char *string2)
+{
+    int counterChar1[120] = {0}, counterChar2[120] = {0};
+    int counter;
+   
+    if(strlen(string1) != strlen(string2))
+    {
+        return 0;
+    }
+    
+    for(counter = 0; string1[counter] != '\0'; counter++)
+    {
+        counterChar1[string1[counter]]++;
+    }
+    
+    for(counter = 0; string2[counter] != '\0'; counter++)
+    {
+        counterChar2[string2[counter]]++;
+    }
+
+    for(counter = 0; counter < 120; counter++)
+    {
+        if(counterChar1[counter] != counterChar2[counter])
+            return 0;
+    }
+    return 1;
+}
+
+int main()
+{
+    char string1[80], string2[80];
+    printf("enter your first word\n");
+    scanf("%s",string1);
+    printf("Enter your second word \n");
+    scanf("%s",string2);
+ 
+    if(anagram_mi(string1, string2) == 1)
+    {
+       printf("%s and %s are Anagram\n", string1,string2);
+    } 
+    else
+    {
+       printf("%s and %s are not Anagram\n",string1,string2);
+    }
+    getchar();
+    return 0;
+}
